@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Star } from "lucide-react";
+import { Pill, Star } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -12,9 +12,9 @@ interface ProductCardProps {
   id: string;
   name: string;
   price: number;
-  image: ProductImage;
   category: string;
   rating: number;
+  image?: ProductImage;
   isNew?: boolean;
   isSale?: boolean;
 }
@@ -33,14 +33,17 @@ export function ProductCard({
     <Card className="overflow-hidden">
       <div className="relative">
         <Link href={`/products/${id}`}>
-          <div className="overflow-hidden">
-            <Image
-              src={image}
-              alt={name}
-              width={300}
-              height={300}
-              className="h-[200px] w-full object-cover transition-transform hover:scale-105"
-            />
+          <div className="overflow-hidden grid place-items-center">
+            {image && (
+              <Image
+                src={image}
+                alt={name}
+                width={300}
+                height={300}
+                className="h-[200px] w-full object-cover transition-transform hover:scale-105"
+              />
+            )}
+            {!image && <Pill />}
           </div>
         </Link>
         {isNew && (

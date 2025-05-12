@@ -1,22 +1,24 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Filter, Star } from "lucide-react"
+import { useState } from "react";
+import { Filter, Star } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
-import { Label } from "@/components/ui/label"
-import { Slider } from "@/components/ui/slider"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { useMobile } from "@/hooks/use-mobile"
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+import { Label } from "@/components/ui/label";
+import { Slider } from "@/components/ui/slider";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export function ProductFilter() {
-  const isMobile = useMobile()
-  const [priceRange, setPriceRange] = useState([0, 100])
-  const [openCategories, setOpenCategories] = useState(true)
-  const [openBrands, setOpenBrands] = useState(true)
-  const [openRating, setOpenRating] = useState(true)
+  const [priceRange, setPriceRange] = useState([0, 100]);
+  const [openCategories, setOpenCategories] = useState(true);
+  const [openBrands, setOpenBrands] = useState(true);
+  const [openRating, setOpenRating] = useState(true);
 
   const categories = [
     { id: "vitamins", label: "Vitamins & Supplements" },
@@ -26,7 +28,7 @@ export function ProductFilter() {
     { id: "first-aid", label: "First Aid" },
     { id: "devices", label: "Medical Devices" },
     { id: "personal", label: "Personal Care" },
-  ]
+  ];
 
   const brands = [
     { id: "brand1", label: "HealthPlus" },
@@ -34,7 +36,7 @@ export function ProductFilter() {
     { id: "brand3", label: "NatureCare" },
     { id: "brand4", label: "VitaWell" },
     { id: "brand5", label: "PharmaTrust" },
-  ]
+  ];
 
   const ratings = [
     { id: "rating5", label: "5 Stars", value: 5 },
@@ -42,7 +44,7 @@ export function ProductFilter() {
     { id: "rating3", label: "3 Stars & Up", value: 3 },
     { id: "rating2", label: "2 Stars & Up", value: 2 },
     { id: "rating1", label: "1 Star & Up", value: 1 },
-  ]
+  ];
 
   const FilterContent = () => (
     <div className="space-y-6">
@@ -122,13 +124,18 @@ export function ProductFilter() {
             {ratings.map((rating) => (
               <div key={rating.id} className="flex items-center space-x-2">
                 <Checkbox id={rating.id} />
-                <Label htmlFor={rating.id} className="text-sm cursor-pointer flex items-center">
+                <Label
+                  htmlFor={rating.id}
+                  className="text-sm cursor-pointer flex items-center"
+                >
                   <div className="flex mr-1">
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
                         className={`h-4 w-4 ${
-                          i < rating.value ? "fill-yellow-400 text-yellow-400" : "fill-gray-200 text-gray-200"
+                          i < rating.value
+                            ? "fill-yellow-400 text-yellow-400"
+                            : "fill-gray-200 text-gray-200"
                         }`}
                       />
                     ))}
@@ -141,15 +148,20 @@ export function ProductFilter() {
         </CollapsibleContent>
       </Collapsible>
 
-      <Button className="w-full bg-teal-600 hover:bg-teal-700">Apply Filters</Button>
+      <Button className="w-full bg-teal-600 hover:bg-teal-700">
+        Apply Filters
+      </Button>
     </div>
-  )
+  );
 
-  if (isMobile) {
+  if (false) {
     return (
       <Sheet>
         <SheetTrigger asChild>
-          <Button variant="outline" className="w-full flex items-center justify-center">
+          <Button
+            variant="outline"
+            className="w-full flex items-center justify-center"
+          >
             <Filter className="h-4 w-4 mr-2" />
             Filters
           </Button>
@@ -159,8 +171,8 @@ export function ProductFilter() {
           <FilterContent />
         </SheetContent>
       </Sheet>
-    )
+    );
   }
 
-  return <FilterContent />
+  return <FilterContent />;
 }
